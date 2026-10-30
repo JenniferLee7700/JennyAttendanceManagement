@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제니학원 소개</title>
+<meta name="description" content="제니학원 상세 안내. 1:1 맞춤 커리큘럼, 결석 보강, 등하원 카카오톡 알림까지. 무료 상담 신청 안내.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B3A6B; --navy-deep:#122A50; --gold:#C9A84C; --gold-soft:#F3E9CF;
+    --ink:#2D2D2D; --muted:#777; --line:#E6EAF2; --ice:#F4F7FC; --ice2:#E8EEF7;
+    --white:#fff; --kakao:#FEE500; --w:520px; --r:16px; --r-sm:10px;
+    --shadow:0 10px 24px rgba(27,58,107,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);background:#EEF1F6;line-height:1.6;word-break:keep-all}
+  .page{max-width:var(--w);margin:0 auto;background:var(--white);min-height:100vh;padding-bottom:96px;box-shadow:0 0 40px rgba(0,0,0,.06)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* top bar */
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .in{max-width:var(--w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+  .brand{font-weight:900;color:var(--navy);font-size:1.05rem;letter-spacing:-.02em}
+  .brand small{display:block;font-weight:500;font-size:.68rem;color:var(--muted);letter-spacing:.08em}
+  .topnav{display:flex;gap:14px;font-size:.8rem;color:var(--muted)}
+  .topnav a:hover{color:var(--navy)}
+
+  /* hero */
+  .hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);color:var(--white);padding:40px 24px 36px;position:relative;overflow:hidden}
+  .hero::after{content:'';position:absolute;right:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.35),rgba(201,168,76,0) 70%)}
+  .badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;position:relative}
+  .badge{font-size:.72rem;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25)}
+  .badge.gold{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:700}
+  .hero h1{font-size:1.75rem;font-weight:900;line-height:1.3;letter-spacing:-.02em;position:relative}
+  .hero h1 em{font-style:normal;color:var(--gold)}
+  .hero p{margin-top:14px;color:#CADCFC;font-size:.95rem;position:relative}
+  .hero-actions{display:flex;gap:10px;margin-top:24px;position:relative}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:14px 18px;border-radius:var(--r-sm);font-weight:700;font-size:.95rem;border:0;cursor:pointer;font-family:inherit;transition:transform .15s,opacity .15s}
+  .btn:active{transform:scale(.98)}
+  .btn-gold{background:var(--gold);color:var(--navy);flex:1}
+  .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.45);flex:1}
+  .btn-kakao{background:var(--kakao);color:#191919}
+  .btn-navy{background:var(--navy);color:var(--white)}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:20px 20px 0}
+  .stat{background:var(--ice);border-radius:var(--r-sm);padding:14px 10px;text-align:center}
+  .stat b{display:block;font-size:1.35rem;font-weight:900;color:var(--gold);line-height:1.1}
+  .stat span{font-size:.75rem;color:var(--muted)}
+
+  /* sections */
+  section{padding:40px 24px 8px}
+  .eyebrow{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.1em;margin-bottom:6px}
+  h2{font-size:1.35rem;font-weight:900;color:var(--navy);line-height:1.35;letter-spacing:-.02em}
+  .lead{margin-top:10px;color:#555;font-size:.95rem}
+  .divider{height:8px;background:var(--ice);margin-top:36px}
+
+  /* checklist */
+  .checks{list-style:none;margin-top:18px;display:grid;gap:10px}
+  .checks li{display:flex;gap:12px;align-items:flex-start;background:var(--ice);border-radius:var(--r-sm);padding:14px}
+  .checks li::before{content:'✓';flex:0 0 26px;height:26px;border-radius:50%;background:var(--navy);color:var(--white);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.85rem}
+
+  /* feature rows */
+  .rows{margin-top:18px;display:grid;gap:14px}
+  .row{display:flex;gap:14px;align-items:flex-start}
+  .row .ic{flex:0 0 46px;height:46px;border-radius:50%;background:var(--ice2);display:flex;align-items:center;justify-content:center;font-size:1.25rem}
+  .row h3{font-size:1rem;font-weight:700;color:var(--navy)}
+  .row p{font-size:.9rem;color:#555;margin-top:2px}
+
+  /* curriculum tabs */
+  .tabs{display:flex;gap:6px;margin-top:18px;background:var(--ice);padding:5px;border-radius:var(--r-sm)}
+  .tab{flex:1;border:0;background:transparent;padding:10px 4px;border-radius:8px;font-family:inherit;font-weight:700;font-size:.88rem;color:var(--muted);cursor:pointer}
+  .tab.active{background:var(--white);color:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+  .panel{display:none;margin-top:14px}
+  .panel.active{display:block}
+  .step{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .step:last-child{border-bottom:0}
+  .step .n{flex:0 0 34px;height:34px;border-radius:50%;background:var(--navy);color:var(--gold);font-weight:900;display:flex;align-items:center;justify-content:center;font-size:.85rem}
+  .step h4{font-size:.95rem;font-weight:700}
+  .step p{font-size:.85rem;color:#555}
+  .step .tag{display:inline-block;margin-top:6px;font-size:.72rem;background:var(--gold-soft);color:#7A5F17;padding:2px 8px;border-radius:999px}
+
+  /* timeline */
+  .day{margin-top:18px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .day div{display:grid;grid-template-columns:72px 1fr;gap:12px;padding:12px 16px;font-size:.88rem;border-bottom:1px solid var(--line)}
+  .day div:last-child{border-bottom:0}
+  .day div:nth-child(even){background:var(--ice)}
+  .day b{color:var(--navy)}
+
+  /* instructor */
+  .teacher{margin-top:18px;background:var(--navy);color:var(--white);border-radius:var(--r);padding:22px;display:flex;gap:16px;align-items:center}
+  .avatar{flex:0 0 72px;height:72px;border-radius:50%;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:900}
+  .teacher h3{font-size:1.1rem;font-weight:900}
+  .teacher small{display:block;color:#CADCFC;font-size:.78rem;margin-bottom:6px}
+  .teacher ul{list-style:none;font-size:.82rem;color:#E3EAF6;display:grid;gap:2px}
+  .teacher ul li::before{content:'·';margin-right:6px;color:var(--gold)}
+
+  /* reviews */
+  .reviews{display:grid;gap:12px;margin-top:18px}
+  .review{background:var(--ice);border-radius:var(--r);padding:18px}
+  .stars{color:var(--gold);font-size:.85rem;letter-spacing:2px}
+  .review p{margin-top:8px;font-size:.9rem}
+  .review footer{margin-top:10px;font-size:.75rem;color:var(--muted)}
+
+  /* price */
+  .price{margin-top:18px;border:2px solid var(--gold);border-radius:var(--r);padding:22px;background:linear-gradient(180deg,#FFFDF6,#fff)}
+  .price .label{font-size:.78rem;color:var(--muted)}
+  .price .amt{font-size:1.9rem;font-weight:900;color:var(--navy);line-height:1.2}
+  .price .amt small{font-size:.9rem;color:var(--muted);font-weight:500}
+  .price ul{list-style:none;margin-top:14px;display:grid;gap:6px;font-size:.88rem}
+  .price ul li::before{content:'✓';color:var(--gold);font-weight:900;margin-right:8px}
+  .note{margin-top:10px;font-size:.78rem;color:var(--muted)}
+
+  /* faq */
+  details{border-bottom:1px solid var(--line);padding:14px 0}
+  details summary{list-style:none;cursor:pointer;font-weight:700;font-size:.95rem;display:flex;justify-content:space-between;gap:10px}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:'+';color:var(--gold);font-weight:900;font-size:1.2rem;line-height:1}
+  details[open] summary::after{content:'−'}
+  details p{margin-top:8px;font-size:.88rem;color:#555}
+
+  /* contact */
+  .contact{margin-top:18px;background:var(--ice);border-radius:var(--r);padding:18px;font-size:.9rem;display:grid;gap:8px}
+  .contact div{display:grid;grid-template-columns:64px 1fr;gap:8px}
+  .contact b{color:var(--navy)}
+  .map{margin-top:12px;height:160px;border-radius:var(--r-sm);background:repeating-linear-gradient(45deg,var(--ice2) 0 10px,#f7f9fd 10px 20px);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.82rem;border:1px dashed #cfd8e8}
+
+  /* form */
+  .form{margin-top:18px;display:grid;gap:10px}
+  .form input,.form select,.form textarea{width:100%;padding:13px 14px;border:1px solid #D5DCE8;border-radius:var(--r-sm);font-family:inherit;font-size:.95rem;background:var(--white)}
+  .form input:focus,.form select:focus,.form textarea:focus{outline:2px solid var(--navy);border-color:var(--navy)}
+  .form label.agree{display:flex;gap:8px;align-items:flex-start;font-size:.78rem;color:var(--muted)}
+  .form label.agree input{width:auto;margin-top:3px}
+  .form .msg{font-size:.85rem;color:var(--navy);font-weight:700;display:none}
+
+  .foot{padding:30px 24px 20px;text-align:center;font-size:.75rem;color:var(--muted)}
+  .foot a{color:var(--navy)}
+
+  /* sticky CTA */
+  .cta{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+  .cta .in{max-width:var(--w);margin:0 auto;display:flex;gap:8px;align-items:center}
+  .cta .info{flex:1;min-width:0}
+  .cta .info b{display:block;font-size:.9rem;color:var(--navy)}
+  .cta .info span{font-size:.72rem;color:var(--muted)}
+  .cta .btn{padding:12px 14px;font-size:.88rem}
+
+  .placeholder{background:#FFF4D6;border-bottom:2px dotted var(--gold);padding:0 2px}
+  @media (max-width:360px){.topnav{display:none}.hero h1{font-size:1.5rem}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="#top">제니학원<small>JENNIFER ACADEMY</small></a>
+  <nav class="topnav">
+    <a href="#program">프로그램</a><a href="#teacher">선생님</a><a href="#review">후기</a><a href="#apply">상담</a>
+  </nav>
+</div></div>
+
+<main class="page" id="top">
+
+  <!-- 1. 상단 소개 -->
+  <header class="hero">
+    <div class="badges">
+      <span class="badge gold">상담 신청 접수 중</span>
+      <span class="badge">초·중·고 전 학년</span>
+      <span class="badge">소수 정원</span>
+    </div>
+    <h1>아이 한 명마다<br>커리큘럼이 <em>다릅니다</em></h1>
+    <p>한 반에 같은 진도표를 쓰지 않습니다. 첫 상담에서 현재 위치를 확인하고, 그 아이에게 맞는 순서로 수업을 짭니다. 빠진 날은 따로 보강하고, 등원과 하원은 카카오톡으로 바로 알려드립니다.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="#apply">무료 상담 신청</a>
+      <a class="btn btn-ghost" href="#program">수업 보기</a>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b>1:1</b><span>개인 커리큘럼</span></div>
+    <div class="stat"><b>0원</b><span>결석 보강 추가비</span></div>
+    <div class="stat"><b>당일</b><span>등하원 알림</span></div>
+  </div>
+
+  <!-- 2. 이런 분께 -->
+  <section id="who">
+    <div class="eyebrow">WHO</div>
+    <h2>이런 고민이 있다면<br>상담부터 받아 보세요</h2>
+    <ul class="checks">
+      <li>큰 학원에 다니는데 우리 아이가 어디까지 이해했는지 알 수 없다</li>
+      <li>한 번 결석하면 그 단원이 그대로 구멍으로 남는다</li>
+      <li>학원에 잘 도착했는지, 몇 시에 나왔는지 매번 전화로 확인한다</li>
+      <li>학교 시험 범위에 맞춘 대비가 필요하다</li>
+    </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 3. 수업 방식 -->
+  <section id="how">
+    <div class="eyebrow">HOW</div>
+    <h2>제니학원은 이렇게 수업합니다</h2>
+    <div class="rows">
+      <div class="row"><div class="ic">📋</div><div><h3>첫 상담에서 진단부터</h3><p>레벨 테스트와 학교 교재를 함께 보고, 아이가 지금 어디에 서 있는지 먼저 확인합니다. 그 결과로 개인 진도표를 만듭니다.</p></div></div>
+      <div class="row"><div class="ic">🎯</div><div><h3>1:1 맞춤 커리큘럼</h3><p>같은 반이어도 아이마다 교재와 숙제가 다릅니다. 매주 진도표를 갱신하고, 학교 시험 3주 전부터는 시험 범위로 전환합니다.</p></div></div>
+      <div class="row"><div class="ic">🔁</div><div><h3>결석하면 반드시 보강</h3><p>빠진 수업은 다음 주 안에 따로 시간을 잡아 보강합니다. 보강 일정은 보호자께 미리 안내드립니다.</p></div></div>
+      <div class="row"><div class="ic">💬</div><div><h3>등하원 카카오톡 알림</h3><p>아이가 학원에 들어오고 나갈 때 카카오톡으로 바로 알려드립니다. 등원 시간이 지나도 오지 않으면 먼저 연락드립니다. <a href="index.html" style="color:var(--navy);font-weight:700">출결 시스템 보기 →</a></p></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 4. 프로그램 / 커리큘럼 -->
+  <section id="program">
+    <div class="eyebrow">PROGRAM</div>
+    <h2>학년별 수업 구성</h2>
+    <p class="lead">아래는 기본 뼈대입니다. 실제 진도는 첫 상담 결과에 따라 아이마다 달라집니다.</p>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-p="elem">초등</button>
+      <button class="tab" data-p="mid">중등</button>
+      <button class="tab" data-p="high">고등</button>
+    </div>
+
+    <div class="panel active" id="p-elem">
+      <div class="step"><div class="n">1</div><div><h4>기초 다지기</h4><p>읽기와 기본 개념을 매 수업 확인합니다. 숙제는 하루 20분 분량으로 냅니다.</p><span class="tag">주 2~3회 · 60분</span></div></div>
+      <div class="step"><div class="n">2</div><div><h4>단원별 확인 평가</h4><p>단원이 끝날 때마다 10문항 평가로 이해도를 확인하고, 틀린 유형은 다음 주 수업에 다시 넣습니다.</p></div></div>
+      <div class="step"><div class="n">3</div><div><h4>월말 학습 보고</h4><p>한 달에 한 번 진도·평가 결과·다음 달 계획을 보호자께 문자로 보내드립니다.</p></div></div>
+    </div>
+    <div class="panel" id="p-mid">
+      <div class="step"><div class="n">1</div><div><h4>개념 + 유형 수업</h4><p>교과 진도에 맞춰 개념을 먼저 잡고, 학교별 기출 유형으로 연습합니다.</p><span class="tag">주 2~3회 · 90분</span></div></div>
+      <div class="step"><div class="n">2</div><div><h4>내신 3주 집중</h4><p>시험 3주 전부터 학교 시험 범위로 전환합니다. 교과서와 프린트 중심으로 서술형까지 대비합니다.</p></div></div>
+      <div class="step"><div class="n">3</div><div><h4>시험 후 분석</h4><p>시험지를 받아 틀린 문항을 유형별로 정리하고, 다음 시험 전까지 보완 계획을 세웁니다.</p></div></div>
+    </div>
+    <div class="panel" id="p-high">
+      <div class="step"><div class="n">1</div><div><h4>내신 · 수능 병행</h4><p>학기 중에는 내신, 방학에는 수능 유형 중심으로 운영합니다.</p><span class="tag">주 2회 · 120분</span></div></div>
+      <div class="step"><div class="n">2</div><div><h4>개인 오답 노트 관리</h4><p>매 수업 오답을 기록하고 2주 뒤 같은 유형으로 다시 풀어 정착 여부를 확인합니다.</p></div></div>
+      <div class="step"><div class="n">3</div><div><h4>진로 · 입시 상담</h4><p>학기마다 한 번, 성적 추이와 지원 가능 전형을 놓고 학생·보호자와 함께 상담합니다.</p></div></div>
+    </div>
+
+    <h3 style="margin-top:28px;font-size:1rem;color:var(--navy)">수업 하루 흐름</h3>
+    <div class="day">
+      <div><b>등원</b><span>카카오톡 등원 알림 발송</span></div>
+      <div><b>10분</b><span>지난 수업 숙제 확인 · 단어/개념 점검</span></div>
+      <div><b>40~60분</b><span>개인 진도표에 따른 본 수업</span></div>
+      <div><b>10분</b><span>오늘 배운 내용 확인 문제 · 숙제 안내</span></div>
+      <div><b>하원</b><span>카카오톡 하원 알림 발송</span></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 5. 선생님 -->
+  <section id="teacher">
+    <div class="eyebrow">TEACHER</div>
+    <h2>직접 가르치고, 직접 연락드립니다</h2>
+    <div class="teacher">
+      <div class="avatar">J</div>
+      <div>
+        <small>원장</small>
+        <h3>Jennifer Lee</h3>
+        <ul>
+          <li><span class="placeholder">강의 경력 ○○년</span></li>
+          <li><span class="placeholder">학력 · 자격 사항</span></li>
+          <li>학생 진도표와 보호자 연락을 원장이 직접 관리</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">노란 표시 부분은 실제 내용으로 바꿔 주세요.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 6. 후기 -->
+  <section id="review">
+    <div class="eyebrow">REVIEW</div>
+    <h2>다니고 있는 학부모님 이야기</h2>
+    <div class="reviews">
+      <article class="review"><div class="stars">★★★★★</div><p><span class="placeholder">실제 후기 문장으로 교체해 주세요. 예: "결석한 날 보강 일정을 먼저 알려주셔서 따로 신경 쓸 일이 없었습니다."</span></p><footer>중2 학부모 · 재원 ○개월</footer></article>
+      <article class="review"><div class="stars">★★★★★</div><p><span class="placeholder">실제 후기 문장으로 교체해 주세요. 예: "학원 도착 알림이 와서 퇴근길에 전화 확인을 안 하게 됐어요."</span></p><footer>초4 학부모 · 재원 ○개월</footer></article>
+    </div>
+    <p class="note">후기는 실제 보호자 동의를 받은 내용만 게시해 주세요.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 7. 수강료 -->
+  <section id="price">
+    <div class="eyebrow">FEE</div>
+    <h2>수강료 안내</h2>
+    <div class="price">
+      <div class="label">월 수강료 (주 2회 기준)</div>
+      <div class="amt"><span class="placeholder">000,000</span>원 <small>/ 월</small></div>
+      <ul>
+        <li>레벨 테스트 · 첫 상담 무료</li>
+        <li>결석 보강 추가 비용 없음</li>
+        <li>등하원 카카오톡 알림 포함</li>
+        <li>교재비 별도 (학기당 1~2권)</li>
+      </ul>
+      <div class="note">학년·수업 횟수에 따라 달라집니다. 정확한 금액은 상담 시 안내드립니다.</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 8. FAQ -->
+  <section id="faq">
+    <div class="eyebrow">FAQ</div>
+    <h2>자주 묻는 질문</h2>
+    <div style="margin-top:10px">
+      <details><summary>레벨 테스트는 어떻게 진행되나요?</summary><p>상담 당일 30분 정도 진행합니다. 결과는 당일 바로 설명드리고, 어떤 순서로 수업할지 함께 정합니다.</p></details>
+      <details><summary>중간에 그만두면 환불이 되나요?</summary><p>학원법에 따른 기준대로 남은 수업 일수만큼 환불해 드립니다. 자세한 기준은 등록 시 서면으로 안내드립니다.</p></details>
+      <details><summary>결석 보강은 꼭 와야 하나요?</summary><p>빠진 단원은 다음 진도에 바로 영향을 주기 때문에 보강을 권합니다. 일정은 보호자와 상의해서 잡습니다.</p></details>
+      <details><summary>등하원 알림은 어떻게 받나요?</summary><p>등록 시 보호자 카카오톡 번호를 받아 두고, 아이가 들어오고 나갈 때 알림을 보내드립니다. 추가 비용은 없습니다.</p></details>
+      <details><summary>차량 운행을 하나요?</summary><p><span class="placeholder">차량 운행 여부와 노선을 적어 주세요.</span></p></details>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 9. 위치 · 연락처 -->
+  <section id="location">
+    <div class="eyebrow">LOCATION</div>
+    <h2>오시는 길</h2>
+    <div class="contact">
+      <div><b>주소</b><span class="placeholder">주소를 입력해 주세요</span></div>
+      <div><b>전화</b><span class="placeholder">000-0000-0000</span></div>
+      <div><b>운영</b><span>평일 14:00 ~ 22:00 · 토 10:00 ~ 17:00 <span class="placeholder">(확인)</span></span></div>
+      <div><b>카카오</b><span class="placeholder">카카오톡 채널 주소</span></div>
+    </div>
+    <div class="map">지도 이미지 또는 카카오맵 임베드 자리</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 10. 상담 신청 -->
+  <section id="apply">
+    <div class="eyebrow">CONTACT</div>
+    <h2>무료 상담 신청</h2>
+    <p class="lead">남겨 주시면 영업일 기준 하루 안에 연락드립니다.</p>
+    <form class="form" id="applyForm" novalidate>
+      <input type="text" name="parent" placeholder="보호자 성함" required>
+      <input type="tel" name="phone" placeholder="연락처 (숫자만)" required inputmode="numeric">
+      <select name="grade" required>
+        <option value="">학생 학년 선택</option>
+        <option>초1~3</option><option>초4~6</option><option>중1</option><option>중2</option><option>중3</option><option>고1</option><option>고2</option><option>고3</option>
+      </select>
+      <textarea name="memo" rows="3" placeholder="궁금한 점이나 상담 희망 시간 (선택)"></textarea>
+      <label class="agree"><input type="checkbox" name="agree" required><span>상담 목적의 개인정보 수집·이용에 동의합니다. 상담 종료 후 파기합니다.</span></label>
+      <button class="btn btn-navy" type="submit">상담 신청하기</button>
+      <div class="msg" id="formMsg"></div>
+    </form>
+    <a class="btn btn-kakao" style="width:100%;margin-top:10px" id="kakaoBtn" href="#">카카오톡으로 바로 문의</a>
+  </section>
+
+  <footer class="foot">
+    제니학원 · Jennifer Academy<br>
+    <span class="placeholder">사업자등록번호 · 학원등록번호 · 대표자명</span><br>
+    © 2025 Jennifer Academy &nbsp;|&nbsp; <a href="index.html">출결 관리 시스템</a>
+  </footer>
+</main>
+
+<!-- 하단 고정 버튼 -->
+<div class="cta"><div class="in">
+  <div class="info"><b>첫 상담 · 레벨 테스트 무료</b><span>영업일 하루 안에 연락드립니다</span></div>
+  <a class="btn btn-kakao" id="kakaoBtn2" href="#">카톡 문의</a>
+  <a class="btn btn-navy" href="#apply">상담 신청</a>
+</div></div>
+
+<script>
+  // 수정할 값은 여기 한 곳에서 바꾸면 됩니다.
+  const CONFIG = {
+    kakaoChannelUrl: '',          // 예: 'https://pf.kakao.com/_xxxxx'
+    phone: '',                    // 예: '01012345678'
+    formEndpoint: ''              // 구글폼/Formspree 등 전송 주소. 비워 두면 안내 문구만 표시
+  };
+
+  // 커리큘럼 탭
+  document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('p-' + t.dataset.p).classList.add('active');
+  }));
+
+  // 카카오 버튼
+  ['kakaoBtn','kakaoBtn2'].forEach(id => {
+    const el = document.getElementById(id);
+    if (CONFIG.kakaoChannelUrl) { el.href = CONFIG.kakaoChannelUrl; el.target = '_blank'; el.rel = 'noopener'; }
+    else if (CONFIG.phone) { el.href = 'tel:' + CONFIG.phone; el.textContent = id === 'kakaoBtn' ? '전화로 바로 문의' : '전화 문의'; }
+    else el.addEventListener('click', e => { e.preventDefault(); alert('카카오톡 채널 주소를 CONFIG.kakaoChannelUrl에 넣어 주세요.'); });
+  });
+
+  // 상담 폼
+  const form = document.getElementById('applyForm');
+  const msg = document.getElementById('formMsg');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!form.parent.value.trim() || !form.phone.value.trim() || !form.grade.value || !form.agree.checked) {
+      msg.style.display = 'block'; msg.style.color = '#c0392b';
+      msg.textContent = '성함, 연락처, 학년을 입력하고 동의에 체크해 주세요.';
+      return;
+    }
+    msg.style.color = 'var(--navy)';
+    if (!CONFIG.formEndpoint) {
+      msg.style.display = 'block';
+      msg.textContent = '접수 주소(CONFIG.formEndpoint)가 아직 설정되지 않았습니다. 설정 후 전송됩니다.';
+      return;
+    }
+    try {
+      const res = await fetch(CONFIG.formEndpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      msg.style.display = 'block';
+      if (res.ok) { msg.textContent = '접수되었습니다. 곧 연락드리겠습니다.'; form.reset(); }
+      else msg.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
+    } catch (err) {
+      msg.style.display = 'block'; msg.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
+    }
+  });
+</script>
+</body>
+</html>
