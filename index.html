@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>어린이 출입 관리 시스템</title>
+    <title>제니학원 출결·학습관리</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -562,6 +562,304 @@
             color: var(--primary);
         }
 
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        /* 학습기록 */
+        .student-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        .student-chip {
+            padding: 6px 14px;
+            border-radius: 100px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #444;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .student-chip.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+
+        .student-chip:not(.active):hover {
+            border-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-sm);
+        }
+
+        .form-row + .form-row {
+            margin-top: var(--space-sm);
+        }
+
+        .input-field.small {
+            padding: var(--space-md);
+            font-size: 0.95rem;
+        }
+
+        select.input-field {
+            background: white;
+        }
+
+        .input-label.compact {
+            margin-bottom: var(--space-xs);
+            font-size: 0.8rem;
+        }
+
+        .btn-compact {
+            padding: var(--space-md) !important;
+            font-size: 0.95rem !important;
+        }
+
+        .secondary-btn {
+            width: 100%;
+            padding: var(--space-md);
+            border: 2px solid var(--primary-light);
+            background: white;
+            color: var(--primary-dark);
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: var(--transition);
+            margin-top: var(--space-md);
+        }
+
+        .secondary-btn:hover {
+            background: rgba(67, 97, 238, 0.06);
+        }
+
+        .btn-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+        }
+
+        .book-now {
+            margin-top: var(--space-lg);
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: var(--space-sm);
+        }
+
+        .book-now .level-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            background: rgba(67, 97, 238, 0.1);
+            padding: 2px 8px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
+        .progress-track {
+            height: 10px;
+            background: #e8eaf6;
+            border-radius: 100px;
+            overflow: hidden;
+            margin-top: var(--space-sm);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            border-radius: 100px;
+            transition: width 0.4s ease;
+        }
+
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--neutral-light);
+            margin-top: var(--space-xs);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+        }
+
+        .stat-box {
+            background: rgba(67, 97, 238, 0.06);
+            border-radius: var(--border-radius-sm);
+            padding: var(--space-md) var(--space-xs);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 0.72rem;
+            color: var(--neutral-light);
+            margin-top: 2px;
+        }
+
+        .log-item {
+            border: 1px solid #f0f0f0;
+            border-radius: var(--border-radius-sm);
+            padding: var(--space-md);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            background: white;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        .log-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .log-top {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+            margin-bottom: 2px;
+        }
+
+        .log-date {
+            font-size: 0.8rem;
+            color: var(--neutral-light);
+        }
+
+        .log-type {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 100px;
+            background: rgba(76, 175, 80, 0.12);
+            color: var(--success);
+        }
+
+        .log-type.lesson {
+            background: rgba(67, 97, 238, 0.12);
+            color: var(--primary-dark);
+        }
+
+        .log-type.report {
+            background: rgba(255, 152, 0, 0.14);
+            color: #e65100;
+        }
+
+        .log-type.vocab {
+            background: rgba(66, 66, 66, 0.1);
+            color: var(--neutral);
+        }
+
+        .log-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .log-note {
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 2px;
+            word-break: break-word;
+        }
+
+        .overview-item {
+            border: 1px solid #f0f0f0;
+            border-radius: var(--border-radius-sm);
+            padding: var(--space-md);
+            margin-bottom: var(--space-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .overview-item:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-2px);
+        }
+
+        .overview-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .overview-name {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .overview-book {
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 2px;
+            word-break: keep-all;
+        }
+
+        .overview-last {
+            font-size: 0.75rem;
+            color: var(--neutral-light);
+            white-space: nowrap;
+        }
+
+        .overview-last.stale {
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .completed-item {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--space-sm);
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9rem;
+        }
+
+        .completed-item:last-child {
+            border-bottom: none;
+        }
+
+        .completed-item .date {
+            color: var(--neutral-light);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
         @media (max-width: 500px) {
             :root {
                 --content-width: 100%;
@@ -657,93 +955,649 @@
             margin-top: var(--space-xl);
             border-top: 1px solid #eee;
         }
+
+        /* ===== 대시보드 레이아웃 ===== */
+        body {
+            padding: 0;
+        }
+
+        .container {
+            max-width: none;
+            margin: 0;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: var(--card-bg);
+            border-bottom: 1px solid #e8ebf3;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .topbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            flex-shrink: 0;
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .brand-icon img {
+            width: 26px;
+            height: 26px;
+        }
+
+        .brand-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 1.05rem;
+            line-height: 1.2;
+        }
+
+        .brand-sub {
+            font-size: 0.72rem;
+            color: var(--neutral-light);
+        }
+
+        .topnav {
+            display: flex;
+            gap: var(--space-xs);
+            background: #f1f3fa;
+            padding: 4px;
+            border-radius: 100px;
+        }
+
+        .nav-btn {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 100px;
+            background: transparent;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--neutral-light);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 2px 8px rgba(67, 97, 238, 0.3);
+        }
+
+        .topbar-right {
+            margin-left: auto;
+            font-size: 0.85rem;
+            color: var(--neutral-light);
+            white-space: nowrap;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+        }
+
+        .page-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .page-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1f2333;
+        }
+
+        .page-desc {
+            font-size: 0.9rem;
+            color: var(--neutral-light);
+            margin-top: 2px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .kpi {
+            background: var(--card-bg);
+            border: 1px solid #e8ebf3;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            padding: var(--space-md) var(--space-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            min-width: 0;
+        }
+
+        .kpi-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .kpi-icon.green { background: rgba(76, 175, 80, 0.14); color: var(--success); }
+        .kpi-icon.red { background: rgba(244, 67, 54, 0.12); color: var(--danger); }
+        .kpi-icon.amber { background: rgba(255, 152, 0, 0.16); color: #ef6c00; }
+        .kpi-icon.gray { background: rgba(66, 66, 66, 0.1); color: var(--neutral); }
+        .kpi-icon.blue { background: rgba(67, 97, 238, 0.12); color: var(--primary-dark); }
+
+        .kpi-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #1f2333;
+        }
+
+        .kpi-label {
+            font-size: 0.78rem;
+            color: var(--neutral-light);
+            margin-top: 2px;
+        }
+
+        .dash-grid {
+            display: grid;
+            grid-template-columns: 380px minmax(0, 1fr);
+            gap: var(--space-lg);
+            align-items: start;
+        }
+
+        .dash-col {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            min-width: 0;
+        }
+
+        .card {
+            margin-bottom: 0;
+            border: 1px solid #e8ebf3;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .tabs {
+            box-shadow: none;
+            padding: 0;
+            background: transparent;
+        }
+
+        .tab {
+            border: 1px solid #e8ebf3;
+            background: #fafbff;
+        }
+
+        .tab.active {
+            border-color: var(--primary);
+        }
+
+        .guide {
+            margin-top: 0;
+        }
+
+        #recordsList {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--space-md);
+        }
+
+        #recordsList .no-records {
+            grid-column: 1 / -1;
+        }
+
+        .record-item {
+            margin-bottom: 0;
+        }
+
+        #studentDetail {
+            display: none;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        #studentDetail.open {
+            display: flex;
+        }
+
+        .detail-placeholder {
+            text-align: center;
+            color: var(--neutral-light);
+            padding: var(--space-xl) var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .detail-placeholder .empty-icon {
+            font-size: 3rem;
+            color: #e0e0e0;
+        }
+
+        .footer {
+            margin-top: var(--space-xl);
+        }
+
+        @media (max-width: 960px) {
+            .dash-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .topbar-inner {
+                padding: 0 var(--space-md);
+                gap: var(--space-sm);
+            }
+
+            .brand-sub,
+            .topbar-right {
+                display: none;
+            }
+
+            .nav-btn {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+
+            .main {
+                padding: var(--space-md);
+            }
+
+            .page-title {
+                font-size: 1.2rem;
+            }
+
+            .kpi {
+                padding: var(--space-md);
+                gap: var(--space-sm);
+            }
+
+            .kpi-value {
+                font-size: 1.3rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 헤더 -->
-        <div class="header">
-            <div class="header-icon">
-                <img src="https://public.youware.com/users-website-assets/prod/e025f8db-d93d-419b-8998-0a1a8d05c180/dbe38309565440a4890faa3730a3d9cb.png" alt="학원 아이콘">
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <div class="brand-icon">
+                    <img src="https://public.youware.com/users-website-assets/prod/e025f8db-d93d-419b-8998-0a1a8d05c180/dbe38309565440a4890faa3730a3d9cb.png" alt="학원 아이콘">
+                </div>
+                <div>
+                    <div class="brand-title">제니학원 관리 홈</div>
+                    <div class="brand-sub">출결 · 원서수업 학습기록</div>
+                </div>
             </div>
-            <div class="header-content">
-                <h1 class="header-title">제니학원 출결관리</h1>
-                <p class="header-subtitle">안전한 등하원을 알려드려요</p>
-            </div>
+            <nav class="topnav">
+                <button class="nav-btn mode-btn active" data-view="attendanceView">🕐 출결</button>
+                <button class="nav-btn mode-btn" data-view="learningView">📖 학습기록</button>
+            </nav>
+            <div class="topbar-right" id="todayLabel"></div>
         </div>
+    </header>
 
-        <!-- 탭 메뉴 -->
-        <div class="tabs">
-            <button class="tab active" data-tab="arrival">
-                <span class="status-circle">✓</span>
-                등원
-            </button>
-            <button class="tab" data-tab="departure">
-                <span class="status-circle">✓</span>
-                하원
-            </button>
-            <button class="tab" data-tab="late">
-                <span class="status-circle">!</span>
-                미등원
-            </button>
-            <button class="tab" data-tab="absent">
-                <span class="status-circle">-</span>
-                결석
-            </button>
-        </div>
-
-        <!-- 입력 폼 -->
-        <div class="card">
-            <div class="input-group">
-                <label class="input-label">
-                    <span class="icon">👤</span>
-                    학생명
-                </label>
-                <input type="text" id="nameInput" class="input-field" placeholder="이름을 입력하세요">
+    <main class="main">
+        <!-- ===== 출결 ===== -->
+        <div id="attendanceView" class="view active">
+            <div class="page-head">
+                <div>
+                    <div class="page-title">오늘의 출결</div>
+                    <div class="page-desc">등하원을 체크하고 학부모에게 알림을 보내세요</div>
+                </div>
             </div>
-            <button id="checkBtn" class="check-btn arrival">
-                <img src="https://public.youware.com/users-website-assets/prod/e025f8db-d93d-419b-8998-0a1a8d05c180/b3416e893eb8458d953e9d2a346c1ee8.png" alt="체크" width="24" height="24">
-                등원 체크하기
-            </button>
-        </div>
 
-        <!-- 출입 기록 -->
-        <div class="card">
-            <div class="records-header">
-                <h2 class="records-title">
-                    <span class="icon">🕐</span>
-                    오늘의 출결 기록
-                </h2>
-                <button id="clearAllBtn" class="clear-all-btn">
-                    <span class="icon">🗑️</span>
-                    전체삭제
-                </button>
+            <div class="kpi-grid">
+                <div class="kpi">
+                    <div class="kpi-icon green">✓</div>
+                    <div><div class="kpi-value" id="kpiArrival">0</div><div class="kpi-label">등원</div></div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-icon red">✓</div>
+                    <div><div class="kpi-value" id="kpiDeparture">0</div><div class="kpi-label">하원</div></div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-icon amber">!</div>
+                    <div><div class="kpi-value" id="kpiLate">0</div><div class="kpi-label">미등원</div></div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-icon gray">-</div>
+                    <div><div class="kpi-value" id="kpiAbsent">0</div><div class="kpi-label">결석</div></div>
+                </div>
             </div>
-            <div id="recordsList">
-                <div class="no-records">
-                    <div class="empty-icon">📋</div>
-                    <p>아직 출결 기록이 없습니다</p>
+
+            <div class="dash-grid">
+                <div class="dash-col">
+                    <!-- 출결 체크 -->
+                    <div class="card">
+                        <h2 class="card-title"><span class="icon">✅</span> 출결 체크</h2>
+                        <div class="tabs">
+                            <button class="tab active" data-tab="arrival">
+                                <span class="status-circle">✓</span>
+                                등원
+                            </button>
+                            <button class="tab" data-tab="departure">
+                                <span class="status-circle">✓</span>
+                                하원
+                            </button>
+                            <button class="tab" data-tab="late">
+                                <span class="status-circle">!</span>
+                                미등원
+                            </button>
+                            <button class="tab" data-tab="absent">
+                                <span class="status-circle">-</span>
+                                결석
+                            </button>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">
+                                <span class="icon">👤</span>
+                                학생명
+                            </label>
+                            <input type="text" id="nameInput" class="input-field" placeholder="이름을 입력하세요">
+                        </div>
+                        <button id="checkBtn" class="check-btn arrival">
+                            <img src="https://public.youware.com/users-website-assets/prod/e025f8db-d93d-419b-8998-0a1a8d05c180/b3416e893eb8458d953e9d2a346c1ee8.png" alt="체크" width="24" height="24">
+                            등원 체크하기
+                        </button>
+                    </div>
+
+                    <!-- 사용 안내 -->
+                    <div class="guide">
+                        <h3>
+                            <span class="icon">💡</span>
+                            사용법
+                        </h3>
+                        <ul>
+                            <li>등원/하원 탭을 선택하세요</li>
+                            <li>학생명을 입력하고 체크하세요</li>
+                            <li>카카오톡 공유로 부모님께 알림을 보내세요</li>
+                            <li>학습기록에서 학생을 고르면 읽는 책, 진도, 날짜별 기록을 볼 수 있어요</li>
+                            <li>학습기록은 이 기기의 브라우저에 저장돼요</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dash-col">
+                    <!-- 출입 기록 -->
+                    <div class="card">
+                        <div class="records-header">
+                            <h2 class="records-title">
+                                <span class="icon">🕐</span>
+                                오늘의 출결 기록
+                            </h2>
+                            <button id="clearAllBtn" class="clear-all-btn">
+                                <span class="icon">🗑️</span>
+                                전체삭제
+                            </button>
+                        </div>
+                        <div id="recordsList">
+                            <div class="no-records">
+                                <div class="empty-icon">📋</div>
+                                <p>아직 출결 기록이 없습니다</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 사용 안내 -->
-        <div class="guide">
-            <h3>
-                <span class="icon">💡</span>
-                사용법
-            </h3>
-            <ul>
-                <li>등원/하원 탭을 선택하세요</li>
-                <li>학생명을 입력하고 체크하세요</li>
-                <li>카카오톡 공유로 부모님께 알림을 보내세요</li>
-            </ul>
+        <!-- ===== 학습기록 ===== -->
+        <div id="learningView" class="view">
+            <div class="page-head">
+                <div>
+                    <div class="page-title">원서수업 학습기록</div>
+                    <div class="page-desc">학생별 읽는 책, 진도, 날짜별 기록을 관리하세요</div>
+                </div>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi">
+                    <div class="kpi-icon blue">👤</div>
+                    <div><div class="kpi-value" id="kpiStudents">0</div><div class="kpi-label">등록 학생</div></div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-icon green">📖</div>
+                    <div><div class="kpi-value" id="kpiWeekPages">0</div><div class="kpi-label">이번 주 읽은 쪽</div></div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-icon amber">🏅</div>
+                    <div><div class="kpi-value" id="kpiBooks">0</div><div class="kpi-label">완독 권수 합계</div></div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-icon red">!</div>
+                    <div><div class="kpi-value" id="kpiStale">0</div><div class="kpi-label">7일 이상 기록 없음</div></div>
+                </div>
+            </div>
+
+            <div class="dash-grid">
+                <div class="dash-col">
+                    <!-- 학생 선택 -->
+                    <div class="card">
+                        <h2 class="card-title"><span class="icon">👤</span> 학생</h2>
+                        <div class="form-row" style="margin-bottom: var(--space-md)">
+                            <input type="text" id="studentNameInput" class="input-field small" placeholder="학생 이름">
+                            <button id="addStudentBtn" class="check-btn arrival btn-compact">학생 추가</button>
+                        </div>
+                        <div id="studentChips" class="student-chips"></div>
+                    </div>
+
+                    <!-- 전체 진도 요약 -->
+                    <div class="card" id="overviewCard">
+                        <div class="records-header">
+                            <h2 class="records-title">
+                                <span class="icon">📊</span>
+                                학생별 진도 현황
+                            </h2>
+                        </div>
+                        <div id="overviewList"></div>
+                    </div>
+                </div>
+
+                <div class="dash-col">
+                    <div class="card detail-placeholder" id="detailPlaceholder">
+                        <div class="empty-icon">📖</div>
+                        <p>학생을 선택하면 진도와 학습기록이 여기에 나와요</p>
+                    </div>
+
+                    <!-- 선택한 학생 상세 -->
+                    <div id="studentDetail">
+                        <div class="card">
+                            <div class="records-header">
+                                <h2 class="records-title">
+                                    <span class="icon">📖</span>
+                                    <span id="detailName"></span>
+                                </h2>
+                                <button id="deleteStudentBtn" class="delete-btn">🗑️ 학생 삭제</button>
+                            </div>
+
+                            <div class="form-row">
+                                <div>
+                                    <label class="input-label compact">레벨</label>
+                                    <select id="levelSelect" class="input-field small">
+                                        <option value="1단계 입문">1단계 입문</option>
+                                        <option value="2단계 챕터북">2단계 챕터북</option>
+                                        <option value="3단계 소설">3단계 소설</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="input-label compact">수업 요일</label>
+                                    <input type="text" id="classDayInput" class="input-field small" placeholder="예: 수, 금">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div>
+                                    <label class="input-label compact">현재 읽는 책</label>
+                                    <input type="text" id="bookTitleInput" class="input-field small" placeholder="책 제목">
+                                </div>
+                                <div>
+                                    <label class="input-label compact">총 쪽수</label>
+                                    <input type="number" id="bookPagesInput" class="input-field small" min="1" placeholder="예: 72">
+                                </div>
+                            </div>
+                            <button id="saveBookBtn" class="secondary-btn">학생 정보 저장</button>
+
+                            <div class="book-now">
+                                <span id="bookNowTitle">아직 책이 정해지지 않았어요</span>
+                                <span class="level-tag" id="bookNowLevel"></span>
+                            </div>
+                            <div class="progress-track">
+                                <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-meta">
+                                <span id="progressPages">0쪽 / 0쪽</span>
+                                <span id="progressPercent">0%</span>
+                            </div>
+
+                            <div class="stat-grid">
+                                <div class="stat-box">
+                                    <div class="stat-value" id="statBooks">0</div>
+                                    <div class="stat-label">완독 권수</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-value" id="statWeekDays">0</div>
+                                    <div class="stat-label">이번 주 읽은 날</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-value" id="statWeekPages">0</div>
+                                    <div class="stat-label">이번 주 읽은 쪽</div>
+                                </div>
+                            </div>
+
+                            <div class="btn-row">
+                                <button id="finishBookBtn" class="check-btn late btn-compact">📚 완독 처리</button>
+                                <button id="shareProgressBtn" class="kakao-btn">
+                                    <img src="https://public.youware.com/users-website-assets/prod/e025f8db-d93d-419b-8998-0a1a8d05c180/95a9161c4438438cb8528d468e7afdef.png" alt="카카오톡" width="20" height="20">
+                                    진도 공유
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 기록 추가 -->
+                        <div class="card">
+                            <div class="records-header">
+                                <h2 class="records-title">
+                                    <span class="icon">✏️</span>
+                                    학습기록 추가
+                                </h2>
+                            </div>
+                            <div class="form-row">
+                                <div>
+                                    <label class="input-label compact">날짜</label>
+                                    <input type="date" id="logDateInput" class="input-field small">
+                                </div>
+                                <div>
+                                    <label class="input-label compact">구분</label>
+                                    <select id="logTypeInput" class="input-field small">
+                                        <option value="home">집 읽기</option>
+                                        <option value="lesson">수업</option>
+                                        <option value="report">북 리포트</option>
+                                        <option value="vocab">단어 확인</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div>
+                                    <label class="input-label compact">읽은 쪽 (시작 ~ 끝)</label>
+                                    <div class="form-row">
+                                        <input type="number" id="logStartInput" class="input-field small" min="1" placeholder="시작">
+                                        <input type="number" id="logEndInput" class="input-field small" min="1" placeholder="끝">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="input-label compact">시간 (분)</label>
+                                    <input type="number" id="logMinutesInput" class="input-field small" min="0" placeholder="예: 25">
+                                </div>
+                            </div>
+                            <div class="input-group" style="margin: var(--space-sm) 0 var(--space-md)">
+                                <label class="input-label compact">한 줄 기록 · 선생님 코멘트</label>
+                                <input type="text" id="logNoteInput" class="input-field small" placeholder="예: 7장까지 읽음. 근거 쪽수 들어 답함">
+                            </div>
+                            <button id="addLogBtn" class="check-btn arrival btn-compact">기록 저장</button>
+                        </div>
+
+                        <!-- 기록 목록 -->
+                        <div class="card">
+                            <div class="records-header">
+                                <h2 class="records-title">
+                                    <span class="icon">🗂️</span>
+                                    학습기록
+                                </h2>
+                                <span id="logCount" class="log-date"></span>
+                            </div>
+                            <div id="logList"></div>
+                        </div>
+
+                        <!-- 완독한 책 -->
+                        <div class="card" id="completedCard">
+                            <div class="records-header">
+                                <h2 class="records-title">
+                                    <span class="icon">🏅</span>
+                                    완독한 책
+                                </h2>
+                            </div>
+                            <div id="completedList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="footer">
             @2025 Created by JenniferLee
         </div>
-    </div>
+    </main>
 
     <script>
         class AttendanceTracker {
@@ -1029,8 +1883,17 @@
                 }
             }
 
+            renderStats() {
+                const count = (status) => this.children.filter((c) => c.status === status).length;
+                document.getElementById('kpiArrival').textContent = count('등원');
+                document.getElementById('kpiDeparture').textContent = count('하원');
+                document.getElementById('kpiLate').textContent = count('미등원');
+                document.getElementById('kpiAbsent').textContent = count('결석');
+            }
+
             renderRecords() {
                 const recordsList = document.getElementById('recordsList');
+                this.renderStats();
                 
                 if (this.children.length === 0) {
                     recordsList.innerHTML = `
@@ -1180,9 +2043,555 @@
             }
         }
 
+        // 원서수업 학습기록 · 진도 관리
+        class LearningTracker {
+            constructor() {
+                this.storageKey = 'jennyLearningData';
+                this.students = {};
+                this.selected = null;
+                this.load();
+                this.bind();
+                this.render();
+            }
+
+            bind() {
+                const $ = (id) => document.getElementById(id);
+
+                $('addStudentBtn').addEventListener('click', () => this.addStudent());
+                $('studentNameInput').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.addStudent();
+                });
+                $('deleteStudentBtn').addEventListener('click', () => this.deleteStudent());
+                $('saveBookBtn').addEventListener('click', () => this.saveStudentInfo());
+                $('finishBookBtn').addEventListener('click', () => this.finishBook());
+                $('shareProgressBtn').addEventListener('click', () => this.shareProgress());
+                $('addLogBtn').addEventListener('click', () => this.addLog());
+                $('logNoteInput').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.addLog();
+                });
+            }
+
+            // ---------- 날짜 도우미 ----------
+            todayStr() {
+                const d = new Date();
+                const pad = (n) => String(n).padStart(2, '0');
+                return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+            }
+
+            weekRange() {
+                // 월요일 ~ 일요일
+                const d = new Date();
+                const day = (d.getDay() + 6) % 7; // 월=0
+                const start = new Date(d);
+                start.setDate(d.getDate() - day);
+                const end = new Date(start);
+                end.setDate(start.getDate() + 6);
+                const pad = (n) => String(n).padStart(2, '0');
+                const fmt = (x) => `${x.getFullYear()}-${pad(x.getMonth() + 1)}-${pad(x.getDate())}`;
+                return { start: fmt(start), end: fmt(end) };
+            }
+
+            formatDate(iso) {
+                if (!iso) return '';
+                const [y, m, d] = iso.split('-');
+                return `${m}/${d}`;
+            }
+
+            daysAgo(iso) {
+                if (!iso) return null;
+                const a = new Date(iso + 'T00:00:00');
+                const b = new Date(this.todayStr() + 'T00:00:00');
+                return Math.round((b - a) / 86400000);
+            }
+
+            escapeHtml(text) {
+                return String(text)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;');
+            }
+
+            // ---------- 학생 ----------
+            addStudent() {
+                const input = document.getElementById('studentNameInput');
+                const name = input.value.trim();
+                if (!name) {
+                    alert('학생 이름을 입력해주세요!');
+                    input.focus();
+                    return;
+                }
+                if (!this.students[name]) {
+                    this.students[name] = {
+                        name: name,
+                        level: '2단계 챕터북',
+                        classDay: '',
+                        currentBook: null,
+                        completedBooks: [],
+                        logs: []
+                    };
+                    this.save();
+                }
+                input.value = '';
+                this.selectStudent(name);
+            }
+
+            selectStudent(name) {
+                this.selected = name;
+                this.render();
+                const detail = document.getElementById('studentDetail');
+                if (window.innerWidth <= 960 && detail && detail.scrollIntoView) {
+                    detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            deleteStudent() {
+                const s = this.current();
+                if (!s) return;
+                if (!confirm(`${s.name} 학생의 학습기록 ${s.logs.length}건을 모두 삭제하시겠습니까?\n\n이 작업은 되돌릴 수 없습니다.`)) return;
+                delete this.students[s.name];
+                this.selected = null;
+                this.save();
+                this.render();
+            }
+
+            current() {
+                return this.selected ? this.students[this.selected] : null;
+            }
+
+            saveStudentInfo() {
+                const s = this.current();
+                if (!s) return;
+                s.level = document.getElementById('levelSelect').value;
+                s.classDay = document.getElementById('classDayInput').value.trim();
+                const title = document.getElementById('bookTitleInput').value.trim();
+                const pages = parseInt(document.getElementById('bookPagesInput').value, 10);
+                if (title) {
+                    const changed = !s.currentBook || s.currentBook.title !== title;
+                    s.currentBook = {
+                        title: title,
+                        totalPages: pages > 0 ? pages : (s.currentBook && s.currentBook.totalPages) || 0,
+                        startDate: changed ? this.todayStr() : s.currentBook.startDate
+                    };
+                } else {
+                    s.currentBook = null;
+                }
+                this.save();
+                this.render();
+            }
+
+            finishBook() {
+                const s = this.current();
+                if (!s || !s.currentBook) {
+                    alert('먼저 현재 읽는 책을 저장해주세요.');
+                    return;
+                }
+                if (!confirm(`"${s.currentBook.title}" 완독으로 기록할까요?`)) return;
+                s.completedBooks.push({
+                    title: s.currentBook.title,
+                    totalPages: s.currentBook.totalPages,
+                    startDate: s.currentBook.startDate,
+                    finishedDate: this.todayStr()
+                });
+                s.currentBook = null;
+                this.save();
+                this.render();
+                document.getElementById('bookTitleInput').focus();
+            }
+
+            // ---------- 기록 ----------
+            addLog() {
+                const s = this.current();
+                if (!s) return;
+                const date = document.getElementById('logDateInput').value || this.todayStr();
+                const type = document.getElementById('logTypeInput').value;
+                const startPage = parseInt(document.getElementById('logStartInput').value, 10);
+                const endPage = parseInt(document.getElementById('logEndInput').value, 10);
+                const minutes = parseInt(document.getElementById('logMinutesInput').value, 10);
+                const note = document.getElementById('logNoteInput').value.trim();
+
+                if (!note && !(endPage > 0)) {
+                    alert('읽은 쪽이나 한 줄 기록 중 하나는 입력해주세요!');
+                    return;
+                }
+                if (startPage > 0 && endPage > 0 && endPage < startPage) {
+                    alert('끝 쪽이 시작 쪽보다 앞에 있어요.');
+                    return;
+                }
+
+                s.logs.push({
+                    id: Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+                    date: date,
+                    type: type,
+                    book: s.currentBook ? s.currentBook.title : '',
+                    startPage: startPage > 0 ? startPage : null,
+                    endPage: endPage > 0 ? endPage : null,
+                    minutes: minutes > 0 ? minutes : null,
+                    note: note
+                });
+                this.save();
+                this.render();
+
+                document.getElementById('logStartInput').value = '';
+                document.getElementById('logEndInput').value = '';
+                document.getElementById('logMinutesInput').value = '';
+                document.getElementById('logNoteInput').value = '';
+            }
+
+            deleteLog(id) {
+                const s = this.current();
+                if (!s) return;
+                s.logs = s.logs.filter((l) => l.id !== id);
+                this.save();
+                this.render();
+            }
+
+            pagesOf(log) {
+                if (log.endPage && log.startPage) return Math.max(0, log.endPage - log.startPage + 1);
+                return 0;
+            }
+
+            // ---------- 통계 ----------
+            progress(s) {
+                if (!s.currentBook) return { page: 0, total: 0, percent: 0 };
+                const total = s.currentBook.totalPages || 0;
+                let page = 0;
+                s.logs.forEach((l) => {
+                    if (l.book === s.currentBook.title && l.endPage > page) page = l.endPage;
+                });
+                if (total > 0 && page > total) page = total;
+                const percent = total > 0 ? Math.round((page / total) * 100) : 0;
+                return { page, total, percent };
+            }
+
+            weekStats(s) {
+                const { start, end } = this.weekRange();
+                const days = new Set();
+                let pages = 0;
+                let minutes = 0;
+                s.logs.forEach((l) => {
+                    if (l.date >= start && l.date <= end) {
+                        days.add(l.date);
+                        pages += this.pagesOf(l);
+                        minutes += l.minutes || 0;
+                    }
+                });
+                return { days: days.size, pages, minutes };
+            }
+
+            lastDate(s) {
+                let last = '';
+                s.logs.forEach((l) => { if (l.date > last) last = l.date; });
+                return last;
+            }
+
+            sortedLogs(s) {
+                return s.logs.slice().sort((a, b) => (a.date === b.date ? (a.id < b.id ? 1 : -1) : (a.date < b.date ? 1 : -1)));
+            }
+
+            // ---------- 공유 ----------
+            shareProgress() {
+                const s = this.current();
+                if (!s) return;
+                const p = this.progress(s);
+                const w = this.weekStats(s);
+                const recent = this.sortedLogs(s).filter((l) => l.note).slice(0, 3);
+                const today = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+
+                let message = `📖 원서수업 학습 안내\n\n` +
+                    `👶 ${s.name}\n` +
+                    `📅 ${today}\n` +
+                    `📚 레벨: ${s.level}\n`;
+                if (s.currentBook) {
+                    message += `📕 읽는 책: ${s.currentBook.title}\n`;
+                    if (p.total > 0) {
+                        message += `📈 진도: ${p.page}쪽 / ${p.total}쪽 (${p.percent}%)\n`;
+                    } else if (p.page > 0) {
+                        message += `📈 진도: ${p.page}쪽까지\n`;
+                    }
+                }
+                message += `🏅 완독: ${s.completedBooks.length}권\n` +
+                    `🗓️ 이번 주: ${w.days}일 읽음, ${w.pages}쪽` + (w.minutes ? `, ${w.minutes}분` : '') + `\n`;
+                if (recent.length) {
+                    message += `\n📝 최근 기록\n`;
+                    recent.forEach((l) => {
+                        message += `· ${this.formatDate(l.date)} ${l.note}\n`;
+                    });
+                }
+                message += `\n#제니학원 #원서수업 #1:1맞춤학습 #개인커리큘럼`;
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(message).then(() => {
+                        alert('📱 진도 안내가 복사되었습니다!\n카카오톡에서 붙여넣기 하세요.');
+                    }).catch(() => this.fallbackCopy(message));
+                } else {
+                    this.fallbackCopy(message);
+                }
+            }
+
+            fallbackCopy(message) {
+                try {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = message;
+                    textArea.style.position = 'fixed';
+                    textArea.style.left = '-999999px';
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    const ok = document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    if (ok) {
+                        alert('📱 진도 안내가 복사되었습니다!\n카카오톡에서 붙여넣기 하세요.');
+                        return;
+                    }
+                } catch (err) { /* 아래에서 처리 */ }
+                alert('복사 기능을 지원하지 않는 브라우저입니다.\n아래 메시지를 직접 복사해서 사용하세요:\n\n' + message);
+            }
+
+            // ---------- 렌더링 ----------
+            render() {
+                this.renderKpis();
+                this.renderChips();
+                this.renderOverview();
+                this.renderDetail();
+            }
+
+            renderKpis() {
+                const all = Object.values(this.students);
+                let weekPages = 0;
+                let books = 0;
+                let stale = 0;
+                all.forEach((s) => {
+                    weekPages += this.weekStats(s).pages;
+                    books += s.completedBooks.length;
+                    const ago = this.daysAgo(this.lastDate(s));
+                    if (ago === null || ago >= 7) stale += 1;
+                });
+                document.getElementById('kpiStudents').textContent = all.length;
+                document.getElementById('kpiWeekPages').textContent = weekPages;
+                document.getElementById('kpiBooks').textContent = books;
+                document.getElementById('kpiStale').textContent = stale;
+            }
+
+            renderChips() {
+                const box = document.getElementById('studentChips');
+                const names = Object.keys(this.students).sort((a, b) => a.localeCompare(b, 'ko'));
+                if (names.length === 0) {
+                    box.innerHTML = '<span class="log-date">등록된 학생이 없어요. 이름을 입력하고 학생 추가를 누르세요.</span>';
+                    return;
+                }
+                box.innerHTML = '';
+                names.forEach((name) => {
+                    const chip = document.createElement('button');
+                    chip.className = 'student-chip' + (name === this.selected ? ' active' : '');
+                    chip.textContent = name;
+                    chip.addEventListener('click', () => {
+                        if (this.selected === name) {
+                            this.selected = null;
+                            this.render();
+                        } else {
+                            this.selectStudent(name);
+                        }
+                    });
+                    box.appendChild(chip);
+                });
+            }
+
+            renderOverview() {
+                const list = document.getElementById('overviewList');
+                const names = Object.keys(this.students).sort((a, b) => a.localeCompare(b, 'ko'));
+                if (names.length === 0) {
+                    list.innerHTML = `
+                        <div class="no-records">
+                            <div class="empty-icon">📖</div>
+                            <p>아직 학습기록이 없습니다</p>
+                        </div>
+                    `;
+                    return;
+                }
+                list.innerHTML = '';
+                names.forEach((name) => {
+                    const s = this.students[name];
+                    const p = this.progress(s);
+                    const last = this.lastDate(s);
+                    const ago = this.daysAgo(last);
+                    let lastText = '기록 없음';
+                    let stale = false;
+                    if (last) {
+                        lastText = ago === 0 ? '오늘 기록' : `${ago}일 전 기록`;
+                        stale = ago >= 7;
+                    }
+                    const bookText = s.currentBook
+                        ? `${this.escapeHtml(s.currentBook.title)}${p.total ? ` · ${p.page}/${p.total}쪽` : (p.page ? ` · ${p.page}쪽까지` : '')}`
+                        : '읽는 책 없음';
+
+                    const item = document.createElement('div');
+                    item.className = 'overview-item';
+                    item.innerHTML = `
+                        <div class="overview-head">
+                            <div>
+                                <div class="overview-name">${this.escapeHtml(name)} <span class="level-tag" style="font-size:0.7rem;background:rgba(67,97,238,0.1);color:var(--primary-dark);padding:2px 8px;border-radius:100px;">${this.escapeHtml(s.level)}</span></div>
+                                <div class="overview-book">📕 ${bookText} · <span style="white-space: nowrap">완독 ${s.completedBooks.length}권</span></div>
+                            </div>
+                            <div class="overview-last${stale ? ' stale' : ''}">${lastText}</div>
+                        </div>
+                        <div class="progress-track"><div class="progress-fill" style="width: ${p.percent}%"></div></div>
+                    `;
+                    item.addEventListener('click', () => this.selectStudent(name));
+                    list.appendChild(item);
+                });
+            }
+
+            renderDetail() {
+                const detail = document.getElementById('studentDetail');
+                const placeholder = document.getElementById('detailPlaceholder');
+                const s = this.current();
+                if (!s) {
+                    detail.classList.remove('open');
+                    placeholder.style.display = 'flex';
+                    return;
+                }
+                detail.classList.add('open');
+                placeholder.style.display = 'none';
+
+                document.getElementById('detailName').textContent = `${s.name} 학습기록`;
+                document.getElementById('levelSelect').value = s.level;
+                document.getElementById('classDayInput').value = s.classDay || '';
+                document.getElementById('bookTitleInput').value = s.currentBook ? s.currentBook.title : '';
+                document.getElementById('bookPagesInput').value = s.currentBook && s.currentBook.totalPages ? s.currentBook.totalPages : '';
+                if (!document.getElementById('logDateInput').value) {
+                    document.getElementById('logDateInput').value = this.todayStr();
+                }
+
+                const p = this.progress(s);
+                document.getElementById('bookNowTitle').textContent = s.currentBook
+                    ? `📕 ${s.currentBook.title}` + (s.currentBook.startDate ? ` (${this.formatDate(s.currentBook.startDate)} 시작)` : '')
+                    : '아직 책이 정해지지 않았어요';
+                document.getElementById('bookNowLevel').textContent = s.level;
+                document.getElementById('progressFill').style.width = `${p.percent}%`;
+                document.getElementById('progressPages').textContent = p.total
+                    ? `${p.page}쪽 / ${p.total}쪽`
+                    : (p.page ? `${p.page}쪽까지 읽음` : '아직 읽은 기록이 없어요');
+                document.getElementById('progressPercent').textContent = p.total ? `${p.percent}%` : '';
+
+                const w = this.weekStats(s);
+                document.getElementById('statBooks').textContent = s.completedBooks.length;
+                document.getElementById('statWeekDays').textContent = w.days;
+                document.getElementById('statWeekPages').textContent = w.pages;
+
+                this.renderLogs(s);
+                this.renderCompleted(s);
+            }
+
+            renderLogs(s) {
+                const list = document.getElementById('logList');
+                const count = document.getElementById('logCount');
+                const logs = this.sortedLogs(s);
+                count.textContent = logs.length ? `${logs.length}건` : '';
+                if (logs.length === 0) {
+                    list.innerHTML = `
+                        <div class="no-records">
+                            <div class="empty-icon">✏️</div>
+                            <p>아직 기록이 없어요. 위에서 첫 기록을 남겨보세요.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                const typeLabel = { home: '집 읽기', lesson: '수업', report: '북 리포트', vocab: '단어 확인' };
+                list.innerHTML = '';
+                logs.forEach((l) => {
+                    const item = document.createElement('div');
+                    item.className = 'log-item';
+                    const pages = l.endPage
+                        ? (l.startPage ? `${l.startPage}~${l.endPage}쪽` : `${l.endPage}쪽까지`)
+                        : '';
+                    const meta = [pages, l.minutes ? `${l.minutes}분` : ''].filter(Boolean).join(' · ');
+                    item.innerHTML = `
+                        <div class="log-main">
+                            <div class="log-top">
+                                <span class="log-date">${this.formatDate(l.date)}</span>
+                                <span class="log-type ${l.type}">${typeLabel[l.type] || l.type}</span>
+                                ${l.book ? `<span class="log-date">${this.escapeHtml(l.book)}</span>` : ''}
+                            </div>
+                            ${meta ? `<div class="log-title">${meta}</div>` : ''}
+                            ${l.note ? `<div class="log-note">${this.escapeHtml(l.note)}</div>` : ''}
+                        </div>
+                    `;
+                    const del = document.createElement('button');
+                    del.className = 'delete-btn';
+                    del.innerHTML = '🗑️';
+                    del.title = '삭제';
+                    del.addEventListener('click', () => {
+                        if (confirm('이 기록을 삭제할까요?')) this.deleteLog(l.id);
+                    });
+                    item.appendChild(del);
+                    list.appendChild(item);
+                });
+            }
+
+            renderCompleted(s) {
+                const card = document.getElementById('completedCard');
+                const list = document.getElementById('completedList');
+                if (s.completedBooks.length === 0) {
+                    card.style.display = 'none';
+                    return;
+                }
+                card.style.display = 'block';
+                list.innerHTML = '';
+                s.completedBooks.slice().reverse().forEach((b) => {
+                    const row = document.createElement('div');
+                    row.className = 'completed-item';
+                    row.innerHTML = `
+                        <span>📗 ${this.escapeHtml(b.title)}${b.totalPages ? ` (${b.totalPages}쪽)` : ''}</span>
+                        <span class="date">${this.formatDate(b.startDate)} ~ ${this.formatDate(b.finishedDate)}</span>
+                    `;
+                    list.appendChild(row);
+                });
+            }
+
+            // ---------- 저장 ----------
+            save() {
+                try {
+                    localStorage.setItem(this.storageKey, JSON.stringify(this.students));
+                } catch (e) {
+                    console.error('학습기록 저장 실패:', e);
+                }
+            }
+
+            load() {
+                try {
+                    const raw = localStorage.getItem(this.storageKey);
+                    if (raw) {
+                        const data = JSON.parse(raw);
+                        if (data && typeof data === 'object') this.students = data;
+                    }
+                } catch (e) {
+                    console.error('학습기록 불러오기 실패:', e);
+                    this.students = {};
+                }
+            }
+        }
+
+        // 출결 / 학습기록 화면 전환
+        function initModeSwitch() {
+            document.querySelectorAll('.mode-btn').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.mode-btn').forEach((b) => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.querySelectorAll('.view').forEach((v) => v.classList.remove('active'));
+                    document.getElementById(btn.dataset.view).classList.add('active');
+                });
+            });
+        }
+
         // 앱 초기화
         document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('todayLabel').textContent = new Date().toLocaleDateString('ko-KR', {
+                year: 'numeric', month: 'long', day: 'numeric', weekday: 'short'
+            });
+            initModeSwitch();
             const tracker = new AttendanceTracker();
+            const learning = new LearningTracker();
         });
     </script>
 </body>
