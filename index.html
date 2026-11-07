@@ -562,37 +562,6 @@
             color: var(--primary);
         }
 
-        /* 화면 전환 (출결 / 학습기록) */
-        .mode-switch {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-sm);
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: var(--space-sm);
-            margin-bottom: var(--space-md);
-        }
-
-        .mode-btn {
-            padding: var(--space-md);
-            border: none;
-            border-radius: var(--border-radius-sm);
-            background: transparent;
-            font-family: inherit;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--neutral-light);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .mode-btn.active {
-            background: var(--primary-dark);
-            color: white;
-            box-shadow: 0 4px 12px rgba(63, 55, 201, 0.3);
-        }
-
         .view {
             display: none;
         }
@@ -858,6 +827,7 @@
             font-size: 0.85rem;
             color: #555;
             margin-top: 2px;
+            word-break: keep-all;
         }
 
         .overview-last {
@@ -985,273 +955,649 @@
             margin-top: var(--space-xl);
             border-top: 1px solid #eee;
         }
+
+        /* ===== 대시보드 레이아웃 ===== */
+        body {
+            padding: 0;
+        }
+
+        .container {
+            max-width: none;
+            margin: 0;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: var(--card-bg);
+            border-bottom: 1px solid #e8ebf3;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .topbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            flex-shrink: 0;
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .brand-icon img {
+            width: 26px;
+            height: 26px;
+        }
+
+        .brand-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 1.05rem;
+            line-height: 1.2;
+        }
+
+        .brand-sub {
+            font-size: 0.72rem;
+            color: var(--neutral-light);
+        }
+
+        .topnav {
+            display: flex;
+            gap: var(--space-xs);
+            background: #f1f3fa;
+            padding: 4px;
+            border-radius: 100px;
+        }
+
+        .nav-btn {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 100px;
+            background: transparent;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--neutral-light);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 2px 8px rgba(67, 97, 238, 0.3);
+        }
+
+        .topbar-right {
+            margin-left: auto;
+            font-size: 0.85rem;
+            color: var(--neutral-light);
+            white-space: nowrap;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+        }
+
+        .page-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .page-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1f2333;
+        }
+
+        .page-desc {
+            font-size: 0.9rem;
+            color: var(--neutral-light);
+            margin-top: 2px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .kpi {
+            background: var(--card-bg);
+            border: 1px solid #e8ebf3;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            padding: var(--space-md) var(--space-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            min-width: 0;
+        }
+
+        .kpi-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .kpi-icon.green { background: rgba(76, 175, 80, 0.14); color: var(--success); }
+        .kpi-icon.red { background: rgba(244, 67, 54, 0.12); color: var(--danger); }
+        .kpi-icon.amber { background: rgba(255, 152, 0, 0.16); color: #ef6c00; }
+        .kpi-icon.gray { background: rgba(66, 66, 66, 0.1); color: var(--neutral); }
+        .kpi-icon.blue { background: rgba(67, 97, 238, 0.12); color: var(--primary-dark); }
+
+        .kpi-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #1f2333;
+        }
+
+        .kpi-label {
+            font-size: 0.78rem;
+            color: var(--neutral-light);
+            margin-top: 2px;
+        }
+
+        .dash-grid {
+            display: grid;
+            grid-template-columns: 380px minmax(0, 1fr);
+            gap: var(--space-lg);
+            align-items: start;
+        }
+
+        .dash-col {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            min-width: 0;
+        }
+
+        .card {
+            margin-bottom: 0;
+            border: 1px solid #e8ebf3;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .tabs {
+            box-shadow: none;
+            padding: 0;
+            background: transparent;
+        }
+
+        .tab {
+            border: 1px solid #e8ebf3;
+            background: #fafbff;
+        }
+
+        .tab.active {
+            border-color: var(--primary);
+        }
+
+        .guide {
+            margin-top: 0;
+        }
+
+        #recordsList {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--space-md);
+        }
+
+        #recordsList .no-records {
+            grid-column: 1 / -1;
+        }
+
+        .record-item {
+            margin-bottom: 0;
+        }
+
+        #studentDetail {
+            display: none;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        #studentDetail.open {
+            display: flex;
+        }
+
+        .detail-placeholder {
+            text-align: center;
+            color: var(--neutral-light);
+            padding: var(--space-xl) var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .detail-placeholder .empty-icon {
+            font-size: 3rem;
+            color: #e0e0e0;
+        }
+
+        .footer {
+            margin-top: var(--space-xl);
+        }
+
+        @media (max-width: 960px) {
+            .dash-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .topbar-inner {
+                padding: 0 var(--space-md);
+                gap: var(--space-sm);
+            }
+
+            .brand-sub,
+            .topbar-right {
+                display: none;
+            }
+
+            .nav-btn {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+
+            .main {
+                padding: var(--space-md);
+            }
+
+            .page-title {
+                font-size: 1.2rem;
+            }
+
+            .kpi {
+                padding: var(--space-md);
+                gap: var(--space-sm);
+            }
+
+            .kpi-value {
+                font-size: 1.3rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 헤더 -->
-        <div class="header">
-            <div class="header-icon">
-                <img src="https://public.youware.com/users-website-assets/prod/e025f8db-d93d-419b-8998-0a1a8d05c180/dbe38309565440a4890faa3730a3d9cb.png" alt="학원 아이콘">
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <div class="brand-icon">
+                    <img src="https://public.youware.com/users-website-assets/prod/e025f8db-d93d-419b-8998-0a1a8d05c180/dbe38309565440a4890faa3730a3d9cb.png" alt="학원 아이콘">
+                </div>
+                <div>
+                    <div class="brand-title">제니학원 관리 홈</div>
+                    <div class="brand-sub">출결 · 원서수업 학습기록</div>
+                </div>
             </div>
-            <div class="header-content">
-                <h1 class="header-title">제니학원 출결·학습관리</h1>
-                <p class="header-subtitle">등하원 알림과 원서수업 학습기록</p>
-            </div>
+            <nav class="topnav">
+                <button class="nav-btn mode-btn active" data-view="attendanceView">🕐 출결</button>
+                <button class="nav-btn mode-btn" data-view="learningView">📖 학습기록</button>
+            </nav>
+            <div class="topbar-right" id="todayLabel"></div>
         </div>
+    </header>
 
-        <!-- 화면 전환 -->
-        <div class="mode-switch">
-            <button class="mode-btn active" data-view="attendanceView">🕐 출결</button>
-            <button class="mode-btn" data-view="learningView">📖 학습기록</button>
-        </div>
-
+    <main class="main">
+        <!-- ===== 출결 ===== -->
         <div id="attendanceView" class="view active">
-        <!-- 탭 메뉴 -->
-        <div class="tabs">
-            <button class="tab active" data-tab="arrival">
-                <span class="status-circle">✓</span>
-                등원
-            </button>
-            <button class="tab" data-tab="departure">
-                <span class="status-circle">✓</span>
-                하원
-            </button>
-            <button class="tab" data-tab="late">
-                <span class="status-circle">!</span>
-                미등원
-            </button>
-            <button class="tab" data-tab="absent">
-                <span class="status-circle">-</span>
-                결석
-            </button>
-        </div>
-
-        <!-- 입력 폼 -->
-        <div class="card">
-            <div class="input-group">
-                <label class="input-label">
-                    <span class="icon">👤</span>
-                    학생명
-                </label>
-                <input type="text" id="nameInput" class="input-field" placeholder="이름을 입력하세요">
-            </div>
-            <button id="checkBtn" class="check-btn arrival">
-                <img src="https://public.youware.com/users-website-assets/prod/e025f8db-d93d-419b-8998-0a1a8d05c180/b3416e893eb8458d953e9d2a346c1ee8.png" alt="체크" width="24" height="24">
-                등원 체크하기
-            </button>
-        </div>
-
-        <!-- 출입 기록 -->
-        <div class="card">
-            <div class="records-header">
-                <h2 class="records-title">
-                    <span class="icon">🕐</span>
-                    오늘의 출결 기록
-                </h2>
-                <button id="clearAllBtn" class="clear-all-btn">
-                    <span class="icon">🗑️</span>
-                    전체삭제
-                </button>
-            </div>
-            <div id="recordsList">
-                <div class="no-records">
-                    <div class="empty-icon">📋</div>
-                    <p>아직 출결 기록이 없습니다</p>
+            <div class="page-head">
+                <div>
+                    <div class="page-title">오늘의 출결</div>
+                    <div class="page-desc">등하원을 체크하고 학부모에게 알림을 보내세요</div>
                 </div>
             </div>
-        </div>
 
-        </div>
-
-        <!-- 학습기록 -->
-        <div id="learningView" class="view">
-            <!-- 학생 선택 -->
-            <div class="card">
-                <div class="input-group" style="margin-bottom: var(--space-md)">
-                    <label class="input-label">
-                        <span class="icon">👤</span>
-                        학생
-                    </label>
-                    <div class="form-row">
-                        <input type="text" id="studentNameInput" class="input-field small" placeholder="학생 이름">
-                        <button id="addStudentBtn" class="check-btn arrival btn-compact">학생 추가</button>
-                    </div>
+            <div class="kpi-grid">
+                <div class="kpi">
+                    <div class="kpi-icon green">✓</div>
+                    <div><div class="kpi-value" id="kpiArrival">0</div><div class="kpi-label">등원</div></div>
                 </div>
-                <div id="studentChips" class="student-chips"></div>
+                <div class="kpi">
+                    <div class="kpi-icon red">✓</div>
+                    <div><div class="kpi-value" id="kpiDeparture">0</div><div class="kpi-label">하원</div></div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-icon amber">!</div>
+                    <div><div class="kpi-value" id="kpiLate">0</div><div class="kpi-label">미등원</div></div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-icon gray">-</div>
+                    <div><div class="kpi-value" id="kpiAbsent">0</div><div class="kpi-label">결석</div></div>
+                </div>
             </div>
 
-            <!-- 전체 진도 요약 -->
-            <div class="card" id="overviewCard">
-                <div class="records-header">
-                    <h2 class="records-title">
-                        <span class="icon">📊</span>
-                        학생별 진도 현황
-                    </h2>
-                </div>
-                <div id="overviewList"></div>
-            </div>
-
-            <!-- 선택한 학생 상세 -->
-            <div id="studentDetail" style="display: none">
-                <div class="card">
-                    <div class="records-header">
-                        <h2 class="records-title">
-                            <span class="icon">📖</span>
-                            <span id="detailName"></span>
-                        </h2>
-                        <button id="deleteStudentBtn" class="delete-btn">🗑️ 학생 삭제</button>
-                    </div>
-
-                    <div class="form-row">
-                        <div>
-                            <label class="input-label compact">레벨</label>
-                            <select id="levelSelect" class="input-field small">
-                                <option value="1단계 입문">1단계 입문</option>
-                                <option value="2단계 챕터북">2단계 챕터북</option>
-                                <option value="3단계 소설">3단계 소설</option>
-                            </select>
+            <div class="dash-grid">
+                <div class="dash-col">
+                    <!-- 출결 체크 -->
+                    <div class="card">
+                        <h2 class="card-title"><span class="icon">✅</span> 출결 체크</h2>
+                        <div class="tabs">
+                            <button class="tab active" data-tab="arrival">
+                                <span class="status-circle">✓</span>
+                                등원
+                            </button>
+                            <button class="tab" data-tab="departure">
+                                <span class="status-circle">✓</span>
+                                하원
+                            </button>
+                            <button class="tab" data-tab="late">
+                                <span class="status-circle">!</span>
+                                미등원
+                            </button>
+                            <button class="tab" data-tab="absent">
+                                <span class="status-circle">-</span>
+                                결석
+                            </button>
                         </div>
-                        <div>
-                            <label class="input-label compact">수업 요일</label>
-                            <input type="text" id="classDayInput" class="input-field small" placeholder="예: 수, 금">
+                        <div class="input-group">
+                            <label class="input-label">
+                                <span class="icon">👤</span>
+                                학생명
+                            </label>
+                            <input type="text" id="nameInput" class="input-field" placeholder="이름을 입력하세요">
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div>
-                            <label class="input-label compact">현재 읽는 책</label>
-                            <input type="text" id="bookTitleInput" class="input-field small" placeholder="책 제목">
-                        </div>
-                        <div>
-                            <label class="input-label compact">총 쪽수</label>
-                            <input type="number" id="bookPagesInput" class="input-field small" min="1" placeholder="예: 72">
-                        </div>
-                    </div>
-                    <button id="saveBookBtn" class="secondary-btn">학생 정보 저장</button>
-
-                    <div class="book-now">
-                        <span id="bookNowTitle">아직 책이 정해지지 않았어요</span>
-                        <span class="level-tag" id="bookNowLevel"></span>
-                    </div>
-                    <div class="progress-track">
-                        <div id="progressFill" class="progress-fill" style="width: 0%"></div>
-                    </div>
-                    <div class="progress-meta">
-                        <span id="progressPages">0쪽 / 0쪽</span>
-                        <span id="progressPercent">0%</span>
-                    </div>
-
-                    <div class="stat-grid">
-                        <div class="stat-box">
-                            <div class="stat-value" id="statBooks">0</div>
-                            <div class="stat-label">완독 권수</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-value" id="statWeekDays">0</div>
-                            <div class="stat-label">이번 주 읽은 날</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-value" id="statWeekPages">0</div>
-                            <div class="stat-label">이번 주 읽은 쪽</div>
-                        </div>
-                    </div>
-
-                    <div class="btn-row">
-                        <button id="finishBookBtn" class="check-btn late btn-compact">📚 완독 처리</button>
-                        <button id="shareProgressBtn" class="kakao-btn">
-                            <img src="https://public.youware.com/users-website-assets/prod/e025f8db-d93d-419b-8998-0a1a8d05c180/95a9161c4438438cb8528d468e7afdef.png" alt="카카오톡" width="20" height="20">
-                            진도 공유
+                        <button id="checkBtn" class="check-btn arrival">
+                            <img src="https://public.youware.com/users-website-assets/prod/e025f8db-d93d-419b-8998-0a1a8d05c180/b3416e893eb8458d953e9d2a346c1ee8.png" alt="체크" width="24" height="24">
+                            등원 체크하기
                         </button>
                     </div>
+
+                    <!-- 사용 안내 -->
+                    <div class="guide">
+                        <h3>
+                            <span class="icon">💡</span>
+                            사용법
+                        </h3>
+                        <ul>
+                            <li>등원/하원 탭을 선택하세요</li>
+                            <li>학생명을 입력하고 체크하세요</li>
+                            <li>카카오톡 공유로 부모님께 알림을 보내세요</li>
+                            <li>학습기록에서 학생을 고르면 읽는 책, 진도, 날짜별 기록을 볼 수 있어요</li>
+                            <li>학습기록은 이 기기의 브라우저에 저장돼요</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- 기록 추가 -->
-                <div class="card">
-                    <div class="records-header">
-                        <h2 class="records-title">
-                            <span class="icon">✏️</span>
-                            학습기록 추가
-                        </h2>
-                    </div>
-                    <div class="form-row">
-                        <div>
-                            <label class="input-label compact">날짜</label>
-                            <input type="date" id="logDateInput" class="input-field small">
+                <div class="dash-col">
+                    <!-- 출입 기록 -->
+                    <div class="card">
+                        <div class="records-header">
+                            <h2 class="records-title">
+                                <span class="icon">🕐</span>
+                                오늘의 출결 기록
+                            </h2>
+                            <button id="clearAllBtn" class="clear-all-btn">
+                                <span class="icon">🗑️</span>
+                                전체삭제
+                            </button>
                         </div>
-                        <div>
-                            <label class="input-label compact">구분</label>
-                            <select id="logTypeInput" class="input-field small">
-                                <option value="home">집 읽기</option>
-                                <option value="lesson">수업</option>
-                                <option value="report">북 리포트</option>
-                                <option value="vocab">단어 확인</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div>
-                            <label class="input-label compact">읽은 쪽 (시작 ~ 끝)</label>
-                            <div class="form-row">
-                                <input type="number" id="logStartInput" class="input-field small" min="1" placeholder="시작">
-                                <input type="number" id="logEndInput" class="input-field small" min="1" placeholder="끝">
+                        <div id="recordsList">
+                            <div class="no-records">
+                                <div class="empty-icon">📋</div>
+                                <p>아직 출결 기록이 없습니다</p>
                             </div>
                         </div>
-                        <div>
-                            <label class="input-label compact">시간 (분)</label>
-                            <input type="number" id="logMinutesInput" class="input-field small" min="0" placeholder="예: 25">
-                        </div>
                     </div>
-                    <div class="input-group" style="margin: var(--space-sm) 0 var(--space-md)">
-                        <label class="input-label compact">한 줄 기록 · 선생님 코멘트</label>
-                        <input type="text" id="logNoteInput" class="input-field small" placeholder="예: 7장까지 읽음. 근거 쪽수 들어 답함">
-                    </div>
-                    <button id="addLogBtn" class="check-btn arrival btn-compact">기록 저장</button>
-                </div>
-
-                <!-- 기록 목록 -->
-                <div class="card">
-                    <div class="records-header">
-                        <h2 class="records-title">
-                            <span class="icon">🗂️</span>
-                            학습기록
-                        </h2>
-                        <span id="logCount" class="log-date"></span>
-                    </div>
-                    <div id="logList"></div>
-                </div>
-
-                <!-- 완독한 책 -->
-                <div class="card" id="completedCard">
-                    <div class="records-header">
-                        <h2 class="records-title">
-                            <span class="icon">🏅</span>
-                            완독한 책
-                        </h2>
-                    </div>
-                    <div id="completedList"></div>
                 </div>
             </div>
         </div>
 
-        <!-- 사용 안내 -->
-        <div class="guide">
-            <h3>
-                <span class="icon">💡</span>
-                사용법
-            </h3>
-            <ul>
-                <li>등원/하원 탭을 선택하세요</li>
-                <li>학생명을 입력하고 체크하세요</li>
-                <li>카카오톡 공유로 부모님께 알림을 보내세요</li>
-                <li>학습기록에서 학생을 고르면 읽는 책, 진도, 날짜별 기록을 볼 수 있어요</li>
-                <li>학습기록은 이 기기의 브라우저에 저장돼요</li>
-            </ul>
+        <!-- ===== 학습기록 ===== -->
+        <div id="learningView" class="view">
+            <div class="page-head">
+                <div>
+                    <div class="page-title">원서수업 학습기록</div>
+                    <div class="page-desc">학생별 읽는 책, 진도, 날짜별 기록을 관리하세요</div>
+                </div>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi">
+                    <div class="kpi-icon blue">👤</div>
+                    <div><div class="kpi-value" id="kpiStudents">0</div><div class="kpi-label">등록 학생</div></div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-icon green">📖</div>
+                    <div><div class="kpi-value" id="kpiWeekPages">0</div><div class="kpi-label">이번 주 읽은 쪽</div></div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-icon amber">🏅</div>
+                    <div><div class="kpi-value" id="kpiBooks">0</div><div class="kpi-label">완독 권수 합계</div></div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-icon red">!</div>
+                    <div><div class="kpi-value" id="kpiStale">0</div><div class="kpi-label">7일 이상 기록 없음</div></div>
+                </div>
+            </div>
+
+            <div class="dash-grid">
+                <div class="dash-col">
+                    <!-- 학생 선택 -->
+                    <div class="card">
+                        <h2 class="card-title"><span class="icon">👤</span> 학생</h2>
+                        <div class="form-row" style="margin-bottom: var(--space-md)">
+                            <input type="text" id="studentNameInput" class="input-field small" placeholder="학생 이름">
+                            <button id="addStudentBtn" class="check-btn arrival btn-compact">학생 추가</button>
+                        </div>
+                        <div id="studentChips" class="student-chips"></div>
+                    </div>
+
+                    <!-- 전체 진도 요약 -->
+                    <div class="card" id="overviewCard">
+                        <div class="records-header">
+                            <h2 class="records-title">
+                                <span class="icon">📊</span>
+                                학생별 진도 현황
+                            </h2>
+                        </div>
+                        <div id="overviewList"></div>
+                    </div>
+                </div>
+
+                <div class="dash-col">
+                    <div class="card detail-placeholder" id="detailPlaceholder">
+                        <div class="empty-icon">📖</div>
+                        <p>학생을 선택하면 진도와 학습기록이 여기에 나와요</p>
+                    </div>
+
+                    <!-- 선택한 학생 상세 -->
+                    <div id="studentDetail">
+                        <div class="card">
+                            <div class="records-header">
+                                <h2 class="records-title">
+                                    <span class="icon">📖</span>
+                                    <span id="detailName"></span>
+                                </h2>
+                                <button id="deleteStudentBtn" class="delete-btn">🗑️ 학생 삭제</button>
+                            </div>
+
+                            <div class="form-row">
+                                <div>
+                                    <label class="input-label compact">레벨</label>
+                                    <select id="levelSelect" class="input-field small">
+                                        <option value="1단계 입문">1단계 입문</option>
+                                        <option value="2단계 챕터북">2단계 챕터북</option>
+                                        <option value="3단계 소설">3단계 소설</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="input-label compact">수업 요일</label>
+                                    <input type="text" id="classDayInput" class="input-field small" placeholder="예: 수, 금">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div>
+                                    <label class="input-label compact">현재 읽는 책</label>
+                                    <input type="text" id="bookTitleInput" class="input-field small" placeholder="책 제목">
+                                </div>
+                                <div>
+                                    <label class="input-label compact">총 쪽수</label>
+                                    <input type="number" id="bookPagesInput" class="input-field small" min="1" placeholder="예: 72">
+                                </div>
+                            </div>
+                            <button id="saveBookBtn" class="secondary-btn">학생 정보 저장</button>
+
+                            <div class="book-now">
+                                <span id="bookNowTitle">아직 책이 정해지지 않았어요</span>
+                                <span class="level-tag" id="bookNowLevel"></span>
+                            </div>
+                            <div class="progress-track">
+                                <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-meta">
+                                <span id="progressPages">0쪽 / 0쪽</span>
+                                <span id="progressPercent">0%</span>
+                            </div>
+
+                            <div class="stat-grid">
+                                <div class="stat-box">
+                                    <div class="stat-value" id="statBooks">0</div>
+                                    <div class="stat-label">완독 권수</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-value" id="statWeekDays">0</div>
+                                    <div class="stat-label">이번 주 읽은 날</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-value" id="statWeekPages">0</div>
+                                    <div class="stat-label">이번 주 읽은 쪽</div>
+                                </div>
+                            </div>
+
+                            <div class="btn-row">
+                                <button id="finishBookBtn" class="check-btn late btn-compact">📚 완독 처리</button>
+                                <button id="shareProgressBtn" class="kakao-btn">
+                                    <img src="https://public.youware.com/users-website-assets/prod/e025f8db-d93d-419b-8998-0a1a8d05c180/95a9161c4438438cb8528d468e7afdef.png" alt="카카오톡" width="20" height="20">
+                                    진도 공유
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 기록 추가 -->
+                        <div class="card">
+                            <div class="records-header">
+                                <h2 class="records-title">
+                                    <span class="icon">✏️</span>
+                                    학습기록 추가
+                                </h2>
+                            </div>
+                            <div class="form-row">
+                                <div>
+                                    <label class="input-label compact">날짜</label>
+                                    <input type="date" id="logDateInput" class="input-field small">
+                                </div>
+                                <div>
+                                    <label class="input-label compact">구분</label>
+                                    <select id="logTypeInput" class="input-field small">
+                                        <option value="home">집 읽기</option>
+                                        <option value="lesson">수업</option>
+                                        <option value="report">북 리포트</option>
+                                        <option value="vocab">단어 확인</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div>
+                                    <label class="input-label compact">읽은 쪽 (시작 ~ 끝)</label>
+                                    <div class="form-row">
+                                        <input type="number" id="logStartInput" class="input-field small" min="1" placeholder="시작">
+                                        <input type="number" id="logEndInput" class="input-field small" min="1" placeholder="끝">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="input-label compact">시간 (분)</label>
+                                    <input type="number" id="logMinutesInput" class="input-field small" min="0" placeholder="예: 25">
+                                </div>
+                            </div>
+                            <div class="input-group" style="margin: var(--space-sm) 0 var(--space-md)">
+                                <label class="input-label compact">한 줄 기록 · 선생님 코멘트</label>
+                                <input type="text" id="logNoteInput" class="input-field small" placeholder="예: 7장까지 읽음. 근거 쪽수 들어 답함">
+                            </div>
+                            <button id="addLogBtn" class="check-btn arrival btn-compact">기록 저장</button>
+                        </div>
+
+                        <!-- 기록 목록 -->
+                        <div class="card">
+                            <div class="records-header">
+                                <h2 class="records-title">
+                                    <span class="icon">🗂️</span>
+                                    학습기록
+                                </h2>
+                                <span id="logCount" class="log-date"></span>
+                            </div>
+                            <div id="logList"></div>
+                        </div>
+
+                        <!-- 완독한 책 -->
+                        <div class="card" id="completedCard">
+                            <div class="records-header">
+                                <h2 class="records-title">
+                                    <span class="icon">🏅</span>
+                                    완독한 책
+                                </h2>
+                            </div>
+                            <div id="completedList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="footer">
             @2025 Created by JenniferLee
         </div>
-    </div>
+    </main>
 
     <script>
         class AttendanceTracker {
@@ -1537,8 +1883,17 @@
                 }
             }
 
+            renderStats() {
+                const count = (status) => this.children.filter((c) => c.status === status).length;
+                document.getElementById('kpiArrival').textContent = count('등원');
+                document.getElementById('kpiDeparture').textContent = count('하원');
+                document.getElementById('kpiLate').textContent = count('미등원');
+                document.getElementById('kpiAbsent').textContent = count('결석');
+            }
+
             renderRecords() {
                 const recordsList = document.getElementById('recordsList');
+                this.renderStats();
                 
                 if (this.children.length === 0) {
                     recordsList.innerHTML = `
@@ -1785,7 +2140,7 @@
                 this.selected = name;
                 this.render();
                 const detail = document.getElementById('studentDetail');
-                if (detail && detail.scrollIntoView) {
+                if (window.innerWidth <= 960 && detail && detail.scrollIntoView) {
                     detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
@@ -1995,9 +2350,27 @@
 
             // ---------- 렌더링 ----------
             render() {
+                this.renderKpis();
                 this.renderChips();
                 this.renderOverview();
                 this.renderDetail();
+            }
+
+            renderKpis() {
+                const all = Object.values(this.students);
+                let weekPages = 0;
+                let books = 0;
+                let stale = 0;
+                all.forEach((s) => {
+                    weekPages += this.weekStats(s).pages;
+                    books += s.completedBooks.length;
+                    const ago = this.daysAgo(this.lastDate(s));
+                    if (ago === null || ago >= 7) stale += 1;
+                });
+                document.getElementById('kpiStudents').textContent = all.length;
+                document.getElementById('kpiWeekPages').textContent = weekPages;
+                document.getElementById('kpiBooks').textContent = books;
+                document.getElementById('kpiStale').textContent = stale;
             }
 
             renderChips() {
@@ -2058,7 +2431,7 @@
                         <div class="overview-head">
                             <div>
                                 <div class="overview-name">${this.escapeHtml(name)} <span class="level-tag" style="font-size:0.7rem;background:rgba(67,97,238,0.1);color:var(--primary-dark);padding:2px 8px;border-radius:100px;">${this.escapeHtml(s.level)}</span></div>
-                                <div class="overview-book">📕 ${bookText} · 완독&nbsp;${s.completedBooks.length}권</div>
+                                <div class="overview-book">📕 ${bookText} · <span style="white-space: nowrap">완독 ${s.completedBooks.length}권</span></div>
                             </div>
                             <div class="overview-last${stale ? ' stale' : ''}">${lastText}</div>
                         </div>
@@ -2071,12 +2444,15 @@
 
             renderDetail() {
                 const detail = document.getElementById('studentDetail');
+                const placeholder = document.getElementById('detailPlaceholder');
                 const s = this.current();
                 if (!s) {
-                    detail.style.display = 'none';
+                    detail.classList.remove('open');
+                    placeholder.style.display = 'flex';
                     return;
                 }
-                detail.style.display = 'block';
+                detail.classList.add('open');
+                placeholder.style.display = 'none';
 
                 document.getElementById('detailName').textContent = `${s.name} 학습기록`;
                 document.getElementById('levelSelect').value = s.level;
@@ -2210,6 +2586,9 @@
 
         // 앱 초기화
         document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('todayLabel').textContent = new Date().toLocaleDateString('ko-KR', {
+                year: 'numeric', month: 'long', day: 'numeric', weekday: 'short'
+            });
             initModeSwitch();
             const tracker = new AttendanceTracker();
             const learning = new LearningTracker();
