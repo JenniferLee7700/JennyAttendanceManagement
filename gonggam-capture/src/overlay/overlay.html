@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' gc:; style-src 'self' 'unsafe-inline'">
+<title>영역 캡처</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#000;cursor:crosshair;user-select:none;font-family:'Pretendard','Malgun Gothic','Noto Sans KR',sans-serif}
+#view{position:fixed;inset:0;width:100vw;height:100vh;display:block}
+#size{position:fixed;display:none;background:#17c49d;color:#06231d;font-weight:800;font-size:12px;padding:2px 9px;border-radius:7px;white-space:nowrap;pointer-events:none}
+#mag{position:fixed;display:none;width:170px;border-radius:16px;overflow:hidden;border:2px solid #17c49d;box-shadow:0 12px 32px rgba(0,0,0,.45);background:#0f1f1d;pointer-events:none}
+#mag canvas{display:block;width:170px;height:170px;image-rendering:pixelated}
+#mag .info{display:flex;justify-content:space-between;align-items:center;color:#eafff9;font-size:11.5px;font-weight:700;padding:5px 10px}
+#mag .sw{display:inline-block;width:11px;height:11px;border-radius:3px;border:1px solid rgba(255,255,255,.5);vertical-align:-1px;margin-right:5px}
+#hint{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:rgba(15,31,29,.94);color:#cfe6e0;font-size:12.5px;padding:8px 18px;border-radius:999px;white-space:nowrap;pointer-events:none}
+#hint b{color:#fff;font-weight:800}
+#hint i{font-style:normal;color:#55706a;margin:0 7px}
+</style>
+</head>
+<body>
+<canvas id="view"></canvas>
+<div id="size"></div>
+<div id="mag"><canvas id="magc" width="170" height="170"></canvas><div class="info"><span id="pos"></span><span><span class="sw" id="sw"></span><span id="hex"></span></span></div></div>
+<div id="hint"><b>드래그</b> 영역<i>·</i><b>Enter</b> 저장+복사<i>·</i><b>E</b> 저장 후 편집<i>·</i><b>B</b> 보고서에 담기<i>·</i><b>F</b> 전체<i>·</i><b>L</b> 직전 영역<i>·</i><b>방향키</b> 미세조정<i>·</i><b>Esc</b> 취소</div>
+<script src="overlay.js"></script>
+</body>
+</html>
